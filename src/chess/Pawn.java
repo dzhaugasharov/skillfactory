@@ -14,6 +14,12 @@ public class Pawn extends ChessPiece {
         if (toLine > 7 || toLine < 0 || column != toColumn) {
             return false;
         }
+        ChessPiece targetChessPiece = chessBoard.board[toLine][toColumn];
+        // target point is busy by teammate
+        if (targetChessPiece != null && color.equals(targetChessPiece.getColor())) {
+            return false;
+        }
+
         if (color.equals("White")) {
             if (line >= toLine) return false;
             if (line == 1 && toLine == 3) return true;

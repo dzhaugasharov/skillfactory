@@ -14,6 +14,13 @@ public class Horse extends ChessPiece {
         if (toLine > 8 || toLine < 0 || toColumn > 8 || toColumn < 0 || toLine == line || column == toColumn) {
             return false;
         }
+
+        ChessPiece targetChessPiece = chessBoard.board[toLine][toColumn];
+        // target point is busy by teammate
+        if (targetChessPiece != null && color.equals(targetChessPiece.getColor())) {
+            return false;
+        }
+
         // right or left
         if (Math.abs(line - toLine) == 2 && Math.abs(column - toColumn) == 1) {
             return true;
@@ -22,6 +29,7 @@ public class Horse extends ChessPiece {
         else if (Math.abs(line - toLine) == 1 && Math.abs(column - toColumn) == 2) {
             return true;
         }
+
         return false;
     }
 

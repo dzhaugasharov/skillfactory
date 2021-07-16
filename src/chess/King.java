@@ -17,6 +17,12 @@ public class King extends ChessPiece {
         }
         boolean canMove = false;
 
+        ChessPiece targetChessPiece = chessBoard.board[toLine][toColumn];
+        // target point is busy by teammate
+        if (targetChessPiece != null && color.equals(targetChessPiece.getColor())) {
+            return false;
+        }
+
         // straight
         if (line == toLine && column != toColumn && Math.abs(column - toColumn) == 1) canMove = true;
         if (column == toColumn && line != toLine && Math.abs(line - toLine) == 1) canMove = true;
